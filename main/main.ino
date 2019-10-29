@@ -1,53 +1,47 @@
 #include "GP2Y0A02YK0F.h"
-#include "Maxbotix.h"
 
-GP2Y0A02YK0F irSensor;
-int distance;
-
-Maxbotix rangeSensorPW(8, Maxbotix::PW, Maxbotix::LV);
-#ifdef MAXBOTIX_WITH_SOFTWARE_SERIAL
-    Maxbotix rangeSensorTX(6, Maxbotix::TX, Maxbotix::LV);
-#endif
-Maxbotix rangeSensorAD(A0, Maxbotix::AN, Maxbotix::LV);
+GP2Y0A02YK0F irSensor0;
+GP2Y0A02YK0F irSensor1;
+GP2Y0A02YK0F irSensor2;
+GP2Y0A02YK0F irSensor3;
 
 void setup() 
 {
     Serial.begin(9600);
-    irSensor.begin(A1); // Assign A0 as sensor pin
+    irSensor0.begin(A0); // Assign A0 for irSensor0
+    irSensor1.begin(A1); // Assign A0 for irSensor1
+    irSensor2.begin(A2); // Assign A0 for irSensor2
+    irSensor3.begin(A3); // Assign A0 for irSensor3
 }
 
 void loop() 
 {
-    printUltrasonic();
+    printIR(irSensor0, 0);
+    printIR(irSensor1, 1);
+    printIR(irSensor2, 2);
+    printIR(irSensor3, 3);
     delay(500);
-    printIR();
-    delay(500);
-}
-
-/**
- * @brief Prints range from Ultrasonic sensor
- */
-void printUltrasonic()
-{
-    unsigned long start;
-
-    Serial.println("Reading...");
-    start = millis();
-    Serial.print("AD: ");
-    Serial.print(rangeSensorAD.getRange());
-    Serial.print("cm - ");
-    Serial.print(millis() - start);
-    Serial.println("ms");
-
-    Serial.println();
 }
 
 /**
  * @brief Prints range from IR sensor
  */
-void printIR()
+void printIR(GP2Y0A02YK0F sensor, int sensorNumber)
 {
-    distance = irSensor.getDistanceCentimeter();
-    Serial.print("\nDistance in centimeters: ");
-    Serial.print(distance);  
+    Serial.print("\nDistance for sensor");
+    Serial.print(sensorNumber);
+    Serial.print(": ");
+    Serial.print(sensor.getDistanceCentimeter());
+    Serial.println();
+}
+
+/**
+ * @brief Calculates the distance using IR sensor
+ * 
+ * @return distance[cm]
+ */
+
+int getDistance(GP2Y0A02YK0F sensor)
+{
+    return sensor.getDistanceCentimeter();
 }
