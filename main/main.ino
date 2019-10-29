@@ -4,22 +4,20 @@
 GP2Y0A02YK0F irSensor;
 int distance;
 
-Maxbotix rangeSensorPW(8, Maxbotix::PW, Maxbotix::LV);
-#ifdef MAXBOTIX_WITH_SOFTWARE_SERIAL
-    Maxbotix rangeSensorTX(6, Maxbotix::TX, Maxbotix::LV);
-#endif
 Maxbotix rangeSensorAD(A0, Maxbotix::AN, Maxbotix::LV);
 
 void setup() 
 {
     Serial.begin(9600);
-    irSensor.begin(A1); // Assign A0 as sensor pin
+    irSensor.begin(A1); // Assign A1 as sensor pin
 }
 
 void loop() 
 {
+    println("Trying ultrasonic:")
     printUltrasonic();
     delay(500);
+    println("Trying IR sensor:")
     printIR();
     delay(500);
 }
