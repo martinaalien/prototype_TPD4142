@@ -43,7 +43,7 @@ void printUltrasonic(Maxbotix sensor, int sensorNumber)
 /**
  * @brief Reads distance from sensor
  * 
- * @return distance[Float]
+ * @return distance[cm]
  */
 float getDistance(Maxbotix sensor)
 {
