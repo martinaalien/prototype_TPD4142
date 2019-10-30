@@ -20,7 +20,8 @@ void loop()
     printIR(irSensor1, 1);
     printIR(irSensor2, 2);
     printIR(irSensor3, 3);
-    delay(500);
+    Serial.println();
+    delay(1000);
 }
 
 /**
@@ -28,10 +29,11 @@ void loop()
  */
 void printIR(GP2Y0A02YK0F sensor, int sensorNumber)
 {
-    Serial.print("\nDistance for sensor");
+    Serial.print("Sensor");
     Serial.print(sensorNumber);
     Serial.print(": ");
     Serial.print(sensor.getDistanceCentimeter());
+    Serial.print(" cm");
     Serial.println();
 }
 
