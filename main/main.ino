@@ -14,10 +14,10 @@ void setup()
 
 void loop() 
 {
-    println("Trying ultrasonic:")
+    Serial.println("Trying ultrasonic:");
     printUltrasonic();
     delay(500);
-    println("Trying IR sensor:")
+    Serial.println("Trying IR sensor:");
     printIR();
     delay(500);
 }
