@@ -12,10 +12,10 @@ GP2Y0A02YK0F::GP2Y0A02YK0F() {
 
 }
 
-// Default Begin method: sensorPin = A0.
+// Default Begin method: sensorPin = A1.
 
 void GP2Y0A02YK0F::begin() {
-	begin (A0);
+	begin (A1);
 }
 
 // Begin method - assign sensorPin as the analog sensor input
